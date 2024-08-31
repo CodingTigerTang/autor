@@ -1,0 +1,41 @@
+Package: autor
+Type: Package
+Title: A package that showcases the possibilities of work automation with R
+Version: 0.1.0
+Author: Tiger Tang
+Maintainer: Tiger Tang <tigerloveslobsters@gmail.com>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    dplyr,
+    furrr,
+    magrittr,
+    purrr,
+    readr,
+    rlang,
+    shiny,
+    stringr,
+    tibble,
+    utils
+RoxygenNote: 7.2.1
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)
+Roxygen: list(markdown = TRUE)
+Collate: 
+    'app_examples.R'
+    'utilis.R'
+    'auto_check.R'
+    'autor-package.R'
+    'create_data_files.R'
+    'data.R'
+    'data_split.R'
+    'merger.R'
+    'str_after.R'
+    'str_before.R'
+    'utils-pipe.R'
