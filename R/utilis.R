@@ -146,4 +146,17 @@ load_pkg <- function(pkg_name) {
   }
 }
 
+#' Helper function to update the date column from the ticket_sales dataset to reflect recent days
+#'
+#' @param ticket_sales The ticket_sales dataset
+#'
+#' @examples
+#' #ticket_sales_new <- update_ticket_sales(ticket_sales)
+#'
+update_ticket_sales <- function(ticket_sales) {
+
+  day_diff <- as.numeric(Sys.Date() - ticket_sales$date |> max())
+  ticket_sales$date <- ticket_sales$date + day_diff
+  ticket_sales
+}
 
