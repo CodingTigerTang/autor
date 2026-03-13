@@ -36,6 +36,8 @@ Collate:
     'data.R'
     'data_split.R'
     'merger.R'
+    'plot_helpers.R'
+    'reports_helpers.R'
     'str_after.R'
     'str_before.R'
     'utils-pipe.R'

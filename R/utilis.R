@@ -152,11 +152,67 @@ load_pkg <- function(pkg_name) {
 #'
 #' @examples
 #' #ticket_sales_new <- update_ticket_sales(ticket_sales)
-#'
+#' @export
 update_ticket_sales <- function(ticket_sales) {
 
   day_diff <- as.numeric(Sys.Date() - ticket_sales$date |> max())
   ticket_sales$date <- ticket_sales$date + day_diff
   ticket_sales
 }
+
+
+#' Highlight specific text within a data frame column using HTML styling
+#'
+#' This utility applies inline HTML styling to matching text within a specified
+#' character column. Matching values are wrapped in a `<span>` tag with optional
+#' text color and background color, making the result suitable for HTML-based
+#' tables such as **DT**, **reactable**, and **gt** (via markdown rendering).
+#'
+#' @param df A data frame containing the column to be modified.
+#' @param column A column name (unquoted) in which text should be highlighted.
+#' @param text A character string or regular expression to match.
+#' @param color A character string specifying the text color (e.g., `"red"`,
+#'   `"#FF5733"`). If `NULL`, no text color is applied.
+#' @param backgroundColor A character string specifying the background color
+#'   (e.g., `"yellow"`, `"#F0F0F0"`). If `NULL`, no background color is applied.
+#'
+#' @return A modified data frame with HTML `<span>` tags applied to matching text
+#'   in the specified column.
+#'
+#'
+#' @examples
+#' df <- data.frame(
+#'   status = c("Completed", "In Progress", "Failed"),
+#'   stringsAsFactors = FALSE
+#' )
+#'
+#' highlight_text(df, status, "failed", color = "white", backgroundColor = "red")
+#'
+#' @export
+highlight_text <- function(df, column, text,
+                           color = NULL,
+                           backgroundColor = NULL) {
+
+  column <- as.character(substitute(column))
+
+  if (!column %in% colnames(df)) {
+    stop(paste("Column", column, "not found in dataframe."))
+  }
+
+  df[column] <- gsub(
+    text,
+    paste0(
+      "<span style='color:", color,
+      "; background-color:", backgroundColor, "'>",
+      text,
+      "</span>"
+    ),
+    df[[column]],
+    ignore.case = TRUE
+  )
+
+  df
+}
+
+
 

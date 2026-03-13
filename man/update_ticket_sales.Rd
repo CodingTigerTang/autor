@@ -14,5 +14,4 @@ Helper function to update the date column from the ticket_sales dataset to refle
 }
 \examples{
 #ticket_sales_new <- update_ticket_sales(ticket_sales)
-
 }
