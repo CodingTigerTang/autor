@@ -19,9 +19,7 @@ This package is intended for readers of *Work Automation with R* and for R users
 
 ## Installation
 
-```r
-remotes::install_github("CodingTigerTang/autor")
-```
+`autor` is not yet ready for general installation. Installation instructions will be added once the package reaches a stable public release.
 
 ## Related resources
 
