@@ -2,38 +2,56 @@
 % Please edit documentation in R/merger.R
 \name{merger}
 \alias{merger}
-\title{Merge and load multiple files in your R session}
+\title{Merge and import multiple files}
 \usage{
-merger(folder_path, pattern = "", func = readr::read_delim, show_name = FALSE, para = FALSE, ...)
+merger(
+  folder_path,
+  pattern = "",
+  func = readr::read_delim,
+  show_name = FALSE,
+  para = FALSE,
+  ...
+)
 }
 \arguments{
-\item{folder_path}{the path to the folder that holds the target files}
+\item{folder_path}{Path to the folder containing the files to import.}
 
-\item{pattern}{the pattern that helps identifies the target files. This will take all the regex or keywords or unique characters. The default is \code{pattern = ""}}
+\item{pattern}{Character string or regular expression used to identify the
+target files. The default is \code{""}, which matches all files.}
 
-\item{func}{the import method of your choice. The default is \code{func = readr::read_delim}. Note: no quote is needed and you can use any import function you have installed, for example, \code{func = readr::read_csv} if you have installed \code{readr} package.}
+\item{func}{Function used to import each file. The default is
+\code{readr::read_delim}. Other import functions can be supplied, such as
+\code{readr::read_csv}.}
 
-\item{show_name}{logical value. Whether we have to have the merged file to append the filename. The default is \code{show_name = FALSE}}
+\item{show_name}{Logical. If \code{TRUE}, the source filename is added to the
+imported data. The default is \code{FALSE}.}
 
-\item{para}{logical value. Whether we need to utilize parallel processes with the \code{furrr} package to import the files faster. The default is \code{para = FALSE}}
+\item{para}{Logical. If \code{TRUE}, files are imported in parallel using
+\code{furrr::future_map()}. The default is \code{FALSE}.}
 
-\item{...}{Any argument you want to pass to the import function. For example, you can pass \code{n_max = 100} to limit the import to be 100 lines per files if you are using import functions from \code{readr}.}
+\item{...}{Additional arguments passed to \code{func}. For example,
+\code{n_max = 100} can be used with compatible \code{readr} functions to import
+at most 100 rows from each file.}
 }
 \value{
-a merged data frame for all targeted files.
+A data frame containing the combined contents of all matched files.
 }
 \description{
-This will identify all files in a folder that meet the criteria set and import them into you session.
+Identifies files in a specified folder that match a pattern, imports them
+using a selected import function, and combines the resulting data frames.
 }
 \examples{
 folder_path <- tempdir()
-data_split(mtcars,folder_path,10,file_names = letters)
+data_split(mtcars, folder_path, 10, file_names = letters)
 merger(folder_path, pattern = "csv", show_name = TRUE)
-# Enable parallel processes
+
+# Enable parallel processing
 library(furrr)
 plan(multisession, workers = 4)
 merger(folder_path, pattern = "csv", show_name = TRUE, para = TRUE)
 \dontshow{
+# R CMD check: restore the sequential plan afterward
 if (!inherits(plan(), "sequential")) plan(sequential)
 }
+
 }

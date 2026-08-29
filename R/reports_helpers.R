@@ -29,21 +29,26 @@
 #' regional_breakdown <- tables[[2]]
 #' }
 #'
+#' @importFrom rlang .data
 #' @export
 extract_docx_tables <- function(path) {
-  doc <- officer::read_docx(path) |> officer::docx_summary()
+  doc <- officer::read_docx(path) |>
+    officer::docx_summary()
 
   doc |>
-    dplyr::filter(content_type == "table cell") |>
-    dplyr::select(doc_index, row_id, cell_id, text) |>
-    dplyr::group_by(doc_index) |>
+    dplyr::filter(.data$content_type == "table cell") |>
+    dplyr::select("doc_index", "row_id", "cell_id", "text") |>
+    dplyr::group_by(.data$doc_index) |>
     dplyr::group_split() |>
     purrr::map(function(tbl) {
       wide <- tbl |>
-        dplyr::select(row_id, cell_id, text) |>
-        tidyr::pivot_wider(names_from = cell_id, values_from = text) |>
-        dplyr::arrange(row_id) |>
-        dplyr::select(-row_id)
+        dplyr::select("row_id", "cell_id", "text") |>
+        tidyr::pivot_wider(
+          names_from = "cell_id",
+          values_from = "text"
+        ) |>
+        dplyr::arrange(.data$row_id) |>
+        dplyr::select(-"row_id")
 
       names(wide) <- as.character(unlist(wide[1, ]))
       wide[-1, ]

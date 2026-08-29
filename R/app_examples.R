@@ -43,3 +43,27 @@ shiny_plot <- function() {
     shiny::runApp(app_dir, display.mode = "normal")
   }
 }
+
+
+#' Launch the Shiny Import App
+#'
+#' This function launches the Shiny application.
+#' @export
+shiny_import <- function() {
+  app_dir <- system.file("shiny_import/", package = "autor")
+  if (requireNamespace("shiny", quietly = TRUE)) {
+    shiny::runApp(app_dir, display.mode = "normal")
+  }
+}
+
+
+#' Launch the Import Eval App
+#'
+#' This function launches the Shiny application.
+#' @export
+import_eval <- function() {
+  app_dir <- system.file("import_eval/", package = "autor")
+  if (requireNamespace("shiny", quietly = TRUE)) {
+    shiny::runApp(app_dir, display.mode = "normal")
+  }
+}

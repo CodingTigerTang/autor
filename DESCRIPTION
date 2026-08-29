@@ -1,33 +1,47 @@
 Package: autor
 Type: Package
-Title: A package that showcases the possibilities of work automation with R
+Title: Companion Tools for Work Automation with R
 Version: 0.1.0
-Author: Tiger Tang
-Maintainer: Tiger Tang <tigerloveslobsters@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Authors@R:
+    person(
+        given = "Tiger",
+        family = "Tang",
+        email = "tigerloveslobsters@gmail.com",
+        role = c("aut", "cre")
+    )
+Description: Provides datasets, helper functions, and examples that accompany
+    the book "Work Automation with R". The package supports practical workflows
+    for data processing, reporting, visualization, document generation, and
+    interactive applications, helping readers reproduce examples from the book
+    and adapt them to their own automation projects.
 License: MIT + file LICENSE
+URL: https://github.com/CodingTigerTang/autor,
+    https://tigertang.org/book/
+BugReports: https://github.com/CodingTigerTang/autor/issues
 Encoding: UTF-8
 LazyData: true
-Imports: 
+Imports:
     dplyr,
     furrr,
+    ggplot2,
     magrittr,
+    officer,
+    png,
     purrr,
     readr,
     rlang,
     shiny,
-    stringr,
     tibble,
+    tidyr,
     utils
-RoxygenNote: 7.3.2
-Suggests: 
+Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-Depends: 
-    R (>= 2.10)
+Depends:
+    R (>= 4.1.0)
 Roxygen: list(markdown = TRUE)
-Collate: 
+RoxygenNote: 7.3.2
+Collate:
     'app_examples.R'
     'utilis.R'
     'auto_check.R'

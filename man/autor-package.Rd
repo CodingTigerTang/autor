@@ -4,8 +4,21 @@
 \name{autor-package}
 \alias{autor}
 \alias{autor-package}
-\title{autor: A package that showcases the possibilities of work automation with R}
+\title{autor: Companion Tools for Work Automation with R}
 \description{
-More about what it does (maybe more than one line) Use four spaces when indenting paragraphs within the Description.
+Provides datasets, helper functions, and examples that accompany the book "Work Automation with R". The package supports practical workflows for data processing, reporting, visualization, document generation, and interactive applications, helping readers reproduce examples from the book and adapt them to their own automation projects.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/CodingTigerTang/autor}
+  \item \url{https://tigertang.org/book/}
+  \item Report bugs at \url{https://github.com/CodingTigerTang/autor/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Tiger Tang \email{tigerloveslobsters@gmail.com}
+
 }
 \keyword{internal}
